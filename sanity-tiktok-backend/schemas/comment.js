@@ -5,13 +5,13 @@ export default {
   fields: [
     {
       name: 'postedBy',
-      title: 'Posted By',
-      type: 'postedBy'
+      title: 'PostedBy',
+      type: 'postedBy',
     },
     {
       name: 'comment',
       title: 'Comment',
-      type: 'string'
-    }
-  ]
-}
+      type: 'string',
+    },
+  ],
+};
