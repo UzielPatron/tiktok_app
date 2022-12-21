@@ -14,8 +14,8 @@ interface IProps {
 
 const VideoCard: NextPage<IProps> = ({ post }: IProps) => {
   const [isHover, setIsHover] = useState(false)
-  const [playing, setPlaying] = useState(false)
-  const [isVideoMuted, setIsVideoMuted] = useState(false)
+  const [playing, setPlaying] = useState(true)
+  const [isVideoMuted, setIsVideoMuted] = useState(true)
 
 
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -72,6 +72,7 @@ const VideoCard: NextPage<IProps> = ({ post }: IProps) => {
           <Link href='/'>
             <video
               loop
+              autoPlay={true}
               ref={videoRef}
               className='lg:w-[600px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] rounded-2xl cursor-pointer bg-gray-100'
               src={ post.video.asset.url }
