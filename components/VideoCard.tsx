@@ -17,7 +17,6 @@ const VideoCard: NextPage<IProps> = ({ post }: IProps) => {
   const [playing, setPlaying] = useState(true)
   const [isVideoMuted, setIsVideoMuted] = useState(true)
 
-
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const onVideoPress = () => {
