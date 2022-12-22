@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import axios from 'axios'
 import { Video } from '../types'
 import VideoCard from '../components/VideoCard'
@@ -20,7 +19,7 @@ const Home = ({ videos }: IProps) => {
             ))
           )
           : (
-            <NoResults text={`No Hay Videos`} />
+            <NoResults text={`No Hay Videos`}/>
           )
       }
     </div>
