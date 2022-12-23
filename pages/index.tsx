@@ -26,13 +26,22 @@ const Home = ({ videos }: IProps) => {
   )
 }
 
-export const getServerSideProps = async () => {
-  const { data } = await axios.get(`${BASE_URL}/api/post`)
-  
+interface IServerSideProps {
+  query: { topic: string }
+}
+
+export const getServerSideProps = async ({ query: { topic }}: IServerSideProps) => {
+  let response: any = null;
+
+  if(topic) {
+    response = await axios.get(`${BASE_URL}/api/discover/${topic}`)
+  } else {
+    response = await axios.get(`${BASE_URL}/api/post`)
+  }
 
   return {
     props: {
-      videos: data
+      videos: response.data
     }
   }
 }

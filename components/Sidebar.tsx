@@ -12,10 +12,7 @@ import Footer from './Footer'
 const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true)
 
-  const userProfile = false
-
   const normalLink:string = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold rounded'
-  const activeLink: string = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded'
   
   return (
     <div>
