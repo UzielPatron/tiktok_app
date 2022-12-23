@@ -25,7 +25,7 @@ const Detail = ({ postDetails }: IProps) => {
   const [isMuted, setIsMuted] = useState(true)
   const [comment, setComment] = useState('')
   const [isPostingComment, setIsPostingComment] = useState(false)
-  const [isLinking, setIsLinking] = useState(false)
+  const [isLiking, setIsLiking] = useState(false)
 
   const router = useRouter()
   const {userProfile}: any = useAuthStore()
@@ -43,8 +43,8 @@ const Detail = ({ postDetails }: IProps) => {
   }
 
   const handleLike = async (like: boolean) => {
-    setIsLinking(true)
-    if(!isLinking) {
+    setIsLiking(true)
+    if(!isLiking) {
       if(userProfile) {
         const { data } = await axios.put(`${BASE_URL}/api/like`, {
           userId: userProfile._id,
@@ -56,7 +56,7 @@ const Detail = ({ postDetails }: IProps) => {
       }
     }
     
-    setIsLinking(false)
+    setIsLiking(false)
   }
 
   const addComment = async (e: React.FormEvent) => {
