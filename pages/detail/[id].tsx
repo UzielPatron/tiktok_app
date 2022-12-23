@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useState, useRef} from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -25,6 +25,7 @@ const Detail = ({ postDetails }: IProps) => {
   const [isMuted, setIsMuted] = useState(true)
   const [comment, setComment] = useState('')
   const [isPostingComment, setIsPostingComment] = useState(false)
+  const [isLinking, setIsLinking] = useState(false)
 
   const router = useRouter()
   const {userProfile}: any = useAuthStore()
@@ -41,16 +42,21 @@ const Detail = ({ postDetails }: IProps) => {
     }
   }
 
-  const handleLike =async (like: boolean) => {
-    if(userProfile) {
-      const { data } = await axios.put(`${BASE_URL}/api/like`, {
-        userId: userProfile._id,
-        postId: post._id,
-        like
-      })
-
-      setPost({...post, likes: data.likes })
+  const handleLike = async (like: boolean) => {
+    setIsLinking(true)
+    if(!isLinking) {
+      if(userProfile) {
+        const { data } = await axios.put(`${BASE_URL}/api/like`, {
+          userId: userProfile._id,
+          postId: post._id,
+          like
+        })
+  
+        setPost({...post, likes: data.likes })
+      }
     }
+    
+    setIsLinking(false)
   }
 
   const addComment = async (e: React.FormEvent) => {
@@ -162,6 +168,8 @@ const Detail = ({ postDetails }: IProps) => {
                   likes={post.likes}
                   handleLike={() => handleLike(true)} 
                   handleDislike={() => handleLike(false)}
+                  mt={4}
+                  mdp={4}
                 />
               )
             }

@@ -7,9 +7,11 @@ interface IProps {
   likes: any[]
   handleLike: () => void
   handleDislike: () => void
+  mt: number
+  mdp: number
 }
 
-const LikeButton = ({likes, handleLike, handleDislike}: IProps) => {
+const LikeButton = ({likes, handleLike, handleDislike, mt, mdp}: IProps) => {
   const [alreadyLike, setAlreadyLike] = useState(false)
   const {userProfile}: any = useAuthStore()
   
@@ -27,12 +29,12 @@ const LikeButton = ({likes, handleLike, handleDislike}: IProps) => {
 
   return (
     <div className='flex gap-6'>
-      <div className='mt-4 flex flex-col justify-center items-center cursor-pointer'>
+      <div className={`mt-${mt} flex flex-col justify-center items-center`}>
         {
           alreadyLike
             ? (
               <div
-                className='bg-primary rounded-full p-2 md:p-4 text-[#F51997]'
+                className={`bg-primary rounded-full p-2 md:p-${mdp} text-[#F51997] cursor-pointer`}
                 onClick={handleDislike}  
               >
                 <MdFavorite className='text-lg md:text-2xl'/>
@@ -40,7 +42,7 @@ const LikeButton = ({likes, handleLike, handleDislike}: IProps) => {
             )
             : (
               <div
-                className='bg-primary rounded-full p-2 md:p-4'
+                className={`bg-primary rounded-full p-2 md:p-${mdp}`}
                 onClick={handleLike}  
               >
                 <MdFavorite className='text-lg md:text-2xl'/>
@@ -48,7 +50,7 @@ const LikeButton = ({likes, handleLike, handleDislike}: IProps) => {
             )
         }
         <p className='text-md font-semibold'>
-          { likes?.length | 0 }
+          { likes?.length || 0 }
         </p>
       </div>
     </div>
