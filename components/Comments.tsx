@@ -20,8 +20,8 @@ interface IComment {
   length?: number
   _key: string
   postedBy: {
-    _ref: string
-    _id: string
+    _ref?: string
+    _id?: string
   }
 }
 
