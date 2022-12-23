@@ -95,7 +95,11 @@ const VideoCard: NextPage<IProps> = ({ post }: IProps) => {
         <div
           className='rounded-3xl'
         >
-          <div className='rounded-2xl flex flex-col'>
+          <div
+            className='rounded-2xl flex flex-col'
+            onMouseOver={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
+          >
             <div className='pb-3'>
               <p>
                 { postToShow.caption }
@@ -109,14 +113,12 @@ const VideoCard: NextPage<IProps> = ({ post }: IProps) => {
                 className='rounded-lg lg:w-[700px] w-[200px] cursor-pointer'
                 src={ postToShow.video.asset.url }
                 muted={ isVideoMuted }
-                onMouseEnter={() => setIsHover(true)}
-                onMouseLeave={() => setIsHover(false)}
               >
               </video>
             </Link>
             {
               isHover && (
-                <div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 p-3 w-full justify-center'>
+                <div className='absolute bottom-[75px] cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 p-3 w-full justify-center'>
                   {
                     playing
                       ? (
